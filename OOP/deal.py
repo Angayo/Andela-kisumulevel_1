@@ -21,8 +21,6 @@ class Details():
                 print("Welcome to Andela")
 
     def log_in(self):
-"""if the user is not registered it should 
-request the user to register. If the user."""
         logged_in = False
         email = str(input("Please enter your email: "))
         password = str(input("Please enter your password: "))
@@ -39,8 +37,8 @@ request the user to register. If the user."""
         return logged_in
         else:
         print("Wrong email or password used.")
-    else:
-        print("You have not registered yet. Please register first.")
+        else:
+            print("You have not registered yet. Please register first.")
 
     def log_out(self):
         """Allows the user to log out of the application"""
