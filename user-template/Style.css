@@ -1,0 +1,88 @@
+/* Navigation Section of thew website*/
+/* Add a black background color to the top navigation */
+.topnav {
+    background-color: black;
+    overflow: hidden;
+}
+
+/* links inside the navigation bar */
+.topnav a {
+	float: left;
+    color: blue;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+/* color when you hover */
+.topnav a:hover {
+    background-color: blue;
+    color: black;
+}
+
+/*   Login Section and registration Section */
+/*   Loginform and registration */
+form {
+	border:3px solid #f1f1f1;
+	text-align:center;
+}
+
+/* style for regbtn*/
+.registerbtn {
+	background-color: #4CAF50;
+    color: white;
+    padding: 16px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    opacity: 0.9;
+}
+
+.registerbtn:hover {
+  opacity:1;
+}
+
+/* Add coplor to the links */
+a {
+  color: dodgerblue;
+}
+/*add color to signin*/
+.signin {
+  background-color: #f1f1f1;
+  text-align: center;
+}
+/* width of the inputs and the styling it has */
+input[type=text], input[type="pass"] {
+	padding: 12px 20px;
+	margin: 8px 0px;
+	display:inline-block;
+	border: 1 px solid #5F9EA0;
+	box-sizing: border-box;
+}
+
+input[type=text]:focus, input[type=password]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+/*Style of the button*/
+button{
+	background-color:#2E8B57;
+	color: black;
+	padding: 14px 20px;
+	margin: 8px 0px;
+	border: none;
+	cursor: pointer;
+}
+/* Color of the button when you hover*/
+button:hover{
+	opacity: 0.8;
+}
+ /*Color style of the button cancel*/
+.cancelbtn{
+	width: auto;
+	padding: 10px 18px;
+	background-color: #f44336;
+
+}
