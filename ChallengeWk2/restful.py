@@ -1,45 +1,53 @@
-from flask import Flask, jsonify, request
-app = Flask(__name__)
+from flask import Flask, jsonify, session, redirect, url_for, render_template, request
+app=Flask(__name__)
 
 app.secret_key="amoth"
-info={}
-store_comments=[]
 
-@app.route("/register" ,methods=['POST',"GET"])
+details = {}
+store =[]
+
+
+@app.route('/', methods=['POST', 'GET'])
+def index():
+    return jsonify({"Homepage": "Welcome to Andela Library"})
+
+@app.route ('/register',methods=['POST'])
 def register():
-    full_name=request.get_json()["Fname"]
-    email=request.get_json()["email"]
+    name=request.get_json()["name"]
     username=request.get_json()["username"]
+    email=request.get_json()["email"]
     password=request.get_json()["password"]
-    info.update({username:{"first name":full_name,,"email":email,"password":password}})
-    return jsonify({"message": "Register successful"})
+    details.update({username:{"name":name,"email":email,"password":password}})
+    return jsonify({'meassage' : 'you are succesfully registered'})
 
-@app.route("/login",methods=["GET","POST"])
+def login_pass(username, password):
+    if username in details:
+        if password == details[username]["password"]:
+            return True
+    return False
+
+@app.route('/login',methods=['POST','GET'])
 def login():
     username=request.get_json()["username"]
     password=request.get_json()["password"]
-    if username in info:
-        if password==info[username]["password"]:
-            session["logged_in"]=True
-            return jsonify({"message": "Login successful"})
-        else:
-            return jsonify({"message": "Login unsuccessful"})
+    if loginpass(username, password):
+        return jsonify({'meassage' : 'you are succesfully logged in'})
     else:
-        return jsonify({"message": "Login unsuccessful"})
+        return jsonify({'meassage' : 'you are not succesfully logged in'})
 
-@app.route("/post_comment",methods=["GET","POST"])
-def post_comment():
+@app.route ('/comments_post',methods=['POST'])
+def comments_post():
     comment=request.get_json()["comment"]
-    store_comments.append(comment)
-    return jsonify({"message": "successful commenting"})
+    store.append(comment)
+    return jsonify({'meassage' : 'comments posted'})
 
-@app.route("/account_details",methods=["GET"])   
-def account_details():
-    return jsonify(info)
+@app.route ('/view_comments', methods=['GET'])
+def view_comments():
+    return jsonify(store)
 
+@app.route ('/account', methods=['GET'])
+def account():
+    return jsonify(details)
 
 if __name__=='__main__':
-	app.run(debug=True)
-
-
-
+    app.run(port=3000,debug=True)
