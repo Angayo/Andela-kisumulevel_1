@@ -18,7 +18,7 @@ def register():
     email=request.get_json()["email"]
     password=request.get_json()["password"]
     details.update({username:{"name":name,"email":email,"password":password}})
-    return jsonify({'meassage' : 'you are succesfully registered'})
+    return jsonify({'message' : 'you are succesfully registered'})
 
 def login_pass(username, password):
     if username in details:
@@ -30,23 +30,23 @@ def login_pass(username, password):
 def login():
     username=request.get_json()["username"]
     password=request.get_json()["password"]
-    if loginpass(username, password):
+    if login_pass(username, password):
         return jsonify({'meassage' : 'you are succesfully logged in'})
     else:
-        return jsonify({'meassage' : 'you are not succesfully logged in'})
+        return jsonify({'message' : 'you are not succesfully logged in'})
 
 @app.route ('/comments_post',methods=['POST'])
 def comments_post():
     comment=request.get_json()["comment"]
     store.append(comment)
-    return jsonify({'meassage' : 'comments posted'})
+    return jsonify({'message' : 'comments posted'})
 
 @app.route ('/view_comments', methods=['GET'])
 def view_comments():
     return jsonify(store)
-	
-@app.route('/remove_On/<int:commentID>', methods=['DELETE'])
-def remove_On(commentID):
+
+@app.route('/rem_on/<int:commentID>', methods=['DELETE'])
+def rem_on(commentID):
     del store[commentID]
     return jsonify({"message": "One comment Deleted"})
 
